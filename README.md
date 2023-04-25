@@ -70,3 +70,4 @@ The application will reload automatically if any of the source files are changed
 Due to this app are execute on web browser, you can't use environment variables on environments/environment.ts, becuase this file are execute on server side, and enviroment variables are not available on server side.
 
 If you want to use environment variables on environments/environment.prod.ts, you need to change the aporach for use dotenv lib and  dotenv-webpack plugin for webpack. 
+
