@@ -1,0 +1,35 @@
+name: build and test feature branch
+on:
+  push:
+    branches:
+      - feature/*
+jobs:
+  build-feature:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: pull and checkout from git repository
+        run: |
+           echo "pulling and checking out from git repository"
+
+      - name: setup node 18
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: install npm packages
+        run: npm install
+
+      - name: install latest angular version
+        run: npm install -g @angular/cli@latest
+        
+      - name: run test and build angular app
+        run: |
+          ng test --watch=false
+          ng build --prod
+          echo "run test and build angular app"
+
+      # - name: copy build to customer-back/src/main/resources/static folder
+      #   run: |
+      #     cp -R dist/customer-front/* ../customer-back/src/main/resources/static/
+      #     echo "copy build to customer-back/src/main/resources/stati
