@@ -5,7 +5,7 @@ on:
       - feature/*
 jobs:
   build-feature:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
       - uses: actions/checkout@v3
       - name: pull and checkout from git repository
@@ -26,7 +26,7 @@ jobs:
       - name: run test and build angular app
         run: |
           ng test --watch=false
-          ng build --prod
+          ng build
           echo "run test and build angular app"
 
       # - name: copy build to customer-back/src/main/resources/static folder
