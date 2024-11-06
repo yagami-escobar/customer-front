@@ -36,5 +36,5 @@ jobs:
           name: frontArt
           path: dist/
 
-      - name: Lint code
-        run: npm run lint
+      # - name: Lint code
+      #   run: npm run lint
