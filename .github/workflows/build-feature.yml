@@ -5,31 +5,29 @@ on:
       - feature/*
 jobs:
   build-feature:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - name: pull and checkout from git repository
         run: |
            echo "pulling and checking out from git repository"
 
-      - name: setup node 18
-        uses: actions/setup-node@v3
+      - name: Set up NodeJS
+        uses: actions/setup-node@v4
         with:
           node-version: '18'
 
-      - name: install npm packages
+      - name: Install dependencies
         run: npm install
 
-      - name: install latest angular version
-        run: npm install -g @angular/cli@latest
-        
-      - name: run test and build angular app
-        run: |
-          ng test --watch=false
-          ng build
-          echo "run test and build angular app"
+      - name: Run tests
+        run: npm test --watch=false
 
-      # - name: copy build to customer-back/src/main/resources/static folder
-      #   run: |
-      #     cp -R dist/customer-front/* ../customer-back/src/main/resources/static/
-      #     echo "copy build to customer-back/src/main/resources/stati
+      - name: Build the project
+        run: npm run build --prod
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: frontArt
+          path: dist/frontArt
